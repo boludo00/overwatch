@@ -3,7 +3,7 @@ import json
 import requests
 import pandas as pd
 
-debug = 1
+debug = 0
 
 def get_info():
 	valid_sys = ['pc', 'xbl', 'psn']
@@ -14,20 +14,17 @@ def get_info():
 					"Reaper",
 					"Soldier 76",
 					"Tracer",
-					"Defensive Heroes",
 					"Bastion",
 					"Hanzo",
 					"Junkrat",
 					"Mei",
 					"Torbjorn",
 					"Widowmaker",
-					"Tank Heroes",
 					"D.va",
 					"Reinhardt",
 					"Roadhog",
 					"Winston",
 					"Zarya",
-					"Support Heroes",
 					"Ana",
 					"Lucio",
 					"Mercy",
@@ -63,9 +60,10 @@ else:
 	sys, reg, battle_tag, hero = get_info()
 	url = "https://api.lootbox.eu/" + sys + "/" + reg + "/" + battle_tag + "/quick-play/hero/" + hero +"/"
 
-
+print "Getting request..."
 request = requests.get(url=url)
 data = json.loads(request.text)
 
 df = pd.DataFrame(data)
 
+print df
