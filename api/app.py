@@ -122,9 +122,11 @@ def get_pc_quickplay_usa(btag):
 	# print btag
 	return jsonify(resp)
 
+@app.route('/<string:btag>/competetive/pc/us/', methods = ['GET'])
+def get_pc_competetive_usa(btag):
+	resp = scraper.get_qp_hero_data(btag, "competetive", ow_us_pc)
+	return jsonify(resp)
 
-def get_competetive(btag):
-	jsonify(scraper.get_qp_hero_data(btag, "competetive", ow_us_pc))
 
 @app.route('/hello', methods = ['GET'])
 def test():
