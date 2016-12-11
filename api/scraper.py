@@ -4,7 +4,8 @@ import json
 import collections
 import re
 
-ow_default_endpoint = "https://playoverwatch.com/en-us/career/pc/us/"
+# ow_us_pc = "https://playoverwatch.com/en-us/career/pc/us/"
+# ow_eu_pc "https://playoverwatch.com/en-us/career/pc/eu/"
 
 
 def get_possible_heros():
@@ -29,9 +30,9 @@ def get_comp_hero_data(btag):
 
 
 
-def get_qp_hero_data(hero, btag, mode):
+def get_qp_hero_data(btag, mode, endpoint):
 
-	print "mode: " + str(mode)
+	# print "mode: " + str(mode)
 	if mode == "quickplay":
 		print "setting qp to true"
 		quickplay = True
@@ -39,7 +40,7 @@ def get_qp_hero_data(hero, btag, mode):
 		quickplay = False
 
 	# get the html data from the endpoint + whatever battletag 
-	response = urllib.urlopen(ow_default_endpoint + btag).read()
+	response = urllib.urlopen(endpoint + btag).read()
 	soup = BeautifulSoup(response, "lxml")
 
 	# stats are organized by a card stat div element
@@ -98,7 +99,7 @@ def get_qp_hero_data(hero, btag, mode):
 	# print len(qp_dgs)
 
 
-
+	# print("\n...About to pass in " + str(qp_dgs) + " and " + str(hero_list) + " to get_all_heros_json method...")
 	print json.dumps(get_all_heros_json(qp_dgs, hero_list), indent = 4)
 	return get_all_heros_json(qp_dgs, hero_list)
 
@@ -167,6 +168,7 @@ def get_all_heros_json(hero_data_groups, hero_list):
 
 
 def make_json_categories_keys(hero_tag):
+	# print("\n\nMaking JSON categories out of: " + str(hero_tag))
 	inner = {}
 	cat_response = collections.OrderedDict()
 
@@ -195,16 +197,19 @@ def make_json_categories_keys(hero_tag):
 								data_response[list_of_data[i].string] = list_of_data[i + 1].string
 						cat_response[child.string] = data_response
 
+	return cat_response
+
 
 
 
 gianny = "boludo00-1183"
 tuck = "xTuckNastyy-1211"
 peter = "PKeks-1544"
+swede_guy = "Zebbosai-2381"
 
 if __name__ == "__main__":
 	print "Data for " + peter
-	get_qp_hero_data("Genji", peter, "quickplay")
+	get_qp_hero_data(peter, "quickplay", "https://playoverwatch.com/en-us/career/pc/us/")
 
 
 
