@@ -130,20 +130,8 @@ def get_ps4_data(btag, mode):
             items:
                 $ref: '#/definitions/Ps4'
     """
-	resp = scraper.get_qp_hero_data(btag, mode, ow_ps4)
-	return jsonify(resp)
-
-
-# @app.route('/<string:btag>/quickplay/psn/', methods = ['GET'])
-# def get_ps4_quickplay(btag):
-# 	resp = scraper.get_qp_hero_data(btag, "quickplay", ow_ps4)
-# 	return jsonify(resp)
-
-# @app.route('/<string:btag>/competetive/psn/', methods = ['GET'])
-# def get_ps4_competetive(btag):
-# 	resp = scraper.get_qp_hero_data(btag, "competetive", ow_ps4)
-# 	return jsonify(resp)
-
+    resp = scraper.get_qp_hero_data(btag, mode, ow_ps4)
+    return jsonify(resp)
 
 
 """
@@ -179,9 +167,8 @@ def get_pc_kr_data(btag, mode):
             items:
                 $ref: '#/definitions/PC-KR'
     """
-
-	resp = scraper.get_qp_hero_data(btag, mode, ow_kr_pc)
-	return jsonify(resp)
+    resp = scraper.get_qp_hero_data(btag, mode, ow_kr_pc)
+    return jsonify(resp)
 
 
 # @app.route('/<string:btag>/quickplay/pc/kr/', methods = ['GET'])
@@ -229,8 +216,8 @@ def get_pc_eu_data(btag, mode):
             items:
                 $ref: '#/definitions/PC-EU'
     """
-	resp = scraper.get_qp_hero_data(btag, mode, ow_eu_pc)
-	return jsonify(resp)
+    resp = scraper.get_qp_hero_data(btag, mode, ow_eu_pc)
+    return jsonify(resp)
 
 # @app.route('/<string:btag>/quickplay/pc/eu/', methods = ['GET'])
 # def get_pc_quickplay_europe(btag):
@@ -277,8 +264,8 @@ def get_pc_us_data(btag, mode):
             items:
                 $ref: '#/definitions/PC-NA'
     """
-	resp = scraper.get_qp_hero_data(btag, mode, ow_us_pc)
-	return jsonify(resp)
+    resp = scraper.get_qp_hero_data(btag, mode, ow_us_pc)
+    return jsonify(resp)
 
 # @app.route('/<string:btag>/quickplay/pc/us/', methods = ['GET'])
 # def get_pc_quickplay_usa(btag):
