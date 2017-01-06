@@ -149,7 +149,7 @@ def get_pc_kr_data(btag, mode):
     parameters:
       - name: btag
         in: path
-        description: Battle Tag
+        description: Battle Tag (in format of battletag-1234 instead of battletag#1234)
         required: true
         type: string
         default: none
@@ -198,7 +198,7 @@ def get_pc_eu_data(btag, mode):
     parameters:
       - name: btag
         in: path
-        description: Battle Tag
+        description: Battle Tag (in format of battletag-1234 instead of battletag#1234)
         required: true
         type: string
         default: none
@@ -246,7 +246,7 @@ def get_pc_us_data(btag, mode):
     parameters:
       - name: btag
         in: path
-        description: Battle Tag
+        description: Battle Tag (in format of battletag-1234 instead of battletag#1234)
         required: true
         type: string
         default: none
