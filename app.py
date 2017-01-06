@@ -54,7 +54,7 @@ Xbox methods
 @app.route('/<string:btag>/<string:mode>/xbl/', methods = ['GET'])
 def get_xbox_data(btag, mode):
 	"""
-        Get a JSON representation of all your hero's stats.
+        Get a JSON representation of all your hero's stats for Xbox users.
         ---
         tags:
           - Xbox
@@ -104,6 +104,32 @@ Ps4 methods
 """
 @app.route('/<string:btag>/<string:mode>/psn/', methods = ['GET'])
 def get_ps4_data(btag, mode):
+    """
+    Get a JSON representation of all your hero's stats for Ps4 users.
+    ---
+    tags:
+      - Ps4
+    parameters:
+      - name: btag
+        in: path
+        description: Psn ID
+        required: true
+        type: string
+        default: none
+      - name: mode
+        in: path
+        description: request competetive or quickplay stats. (Accepted parameters are "quickplay" or "competetive")
+        required: true
+        type: string
+        default: none
+    responses:
+      200:
+        description: Returns all heroes stats.
+        schema:
+            type: object
+            items:
+                $ref: '#/definitions/Ps4'
+    """
 	resp = scraper.get_qp_hero_data(btag, mode, ow_ps4)
 	return jsonify(resp)
 
@@ -127,6 +153,33 @@ Korean server methods
 """
 @app.route('/<string:btag>/<string:mode>/pc/kr', methods = ['GET'])
 def get_pc_kr_data(btag, mode):
+    """
+    Get a JSON representation of all your hero's stats for PC Korean server users.
+    ---
+    tags:
+      - PC - Korean
+    parameters:
+      - name: btag
+        in: path
+        description: Battle Tag
+        required: true
+        type: string
+        default: none
+      - name: mode
+        in: path
+        description: request competetive or quickplay stats. (Accepted parameters are "quickplay" or "competetive")
+        required: true
+        type: string
+        default: none
+    responses:
+      200:
+        description: Returns all heroes stats for battle tags on Korean servers.
+        schema:
+            type: object
+            items:
+                $ref: '#/definitions/PC-KR'
+    """
+
 	resp = scraper.get_qp_hero_data(btag, mode, ow_kr_pc)
 	return jsonify(resp)
 
@@ -150,6 +203,32 @@ Europe server methods
 """
 @app.route('/<string:btag>/<string:mode>/pc/eu/', methods = ['GET'])
 def get_pc_eu_data(btag, mode):
+    """
+    Get a JSON representation of all your hero's stats for PC European server users.
+    ---
+    tags:
+      - PC - Europe
+    parameters:
+      - name: btag
+        in: path
+        description: Battle Tag
+        required: true
+        type: string
+        default: none
+      - name: mode
+        in: path
+        description: request competetive or quickplay stats. (Accepted parameters are "quickplay" or "competetive")
+        required: true
+        type: string
+        default: none
+    responses:
+      200:
+        description: Returns all heroes stats for battle tags on European servers.
+        schema:
+            type: object
+            items:
+                $ref: '#/definitions/PC-EU'
+    """
 	resp = scraper.get_qp_hero_data(btag, mode, ow_eu_pc)
 	return jsonify(resp)
 
@@ -172,20 +251,35 @@ America server methods
 """
 @app.route('/<string:btag>/<string:mode>/pc/us/', methods = ['GET'])
 def get_pc_us_data(btag, mode):
+    """
+    Get a JSON representation of all your hero's stats for PC North American server users.
+    ---
+    tags:
+      - PC - North America
+    parameters:
+      - name: btag
+        in: path
+        description: Battle Tag
+        required: true
+        type: string
+        default: none
+      - name: mode
+        in: path
+        description: request competetive or quickplay stats. (Accepted parameters are "quickplay" or "competetive")
+        required: true
+        type: string
+        default: none
+    responses:
+      200:
+        description: Returns all heroes stats for battle tags on Korean servers.
+        schema:
+            type: object
+            items:
+                $ref: '#/definitions/PC-US'
+    """
 	resp = scraper.get_qp_hero_data(btag, mode, ow_us_pc)
 	return jsonify(resp)
 
-# @app.route('/<string:btag>/quickplay/pc/us/', methods = ['GET'])
-# def get_pc_quickplay_usa(btag):
-# 	# print btag
-# 	resp = scraper.get_qp_hero_data(btag, "quickplay", ow_us_pc)
-# 	# print btag
-# 	return jsonify(resp)
-
-# @app.route('/<string:btag>/competetive/pc/us/', methods = ['GET'])
-# def get_pc_competetive_usa(btag):
-# 	resp = scraper.get_qp_hero_data(btag, "competetive", ow_us_pc)
-# 	return jsonify(resp)
 
 
 @app.route('/hello', methods = ['GET'])
@@ -204,5 +298,3 @@ def test():
 if __name__== '__main__':
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
-
-	# get_hero_data("Genji")
