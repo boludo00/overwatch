@@ -275,11 +275,22 @@ def get_pc_us_data(btag, mode):
         schema:
             type: object
             items:
-                $ref: '#/definitions/PC-US'
+                $ref: '#/definitions/PC-NA'
     """
 	resp = scraper.get_qp_hero_data(btag, mode, ow_us_pc)
 	return jsonify(resp)
 
+# @app.route('/<string:btag>/quickplay/pc/us/', methods = ['GET'])
+# def get_pc_quickplay_usa(btag):
+# 	# print btag
+# 	resp = scraper.get_qp_hero_data(btag, "quickplay", ow_us_pc)
+# 	# print btag
+# 	return jsonify(resp)
+
+# @app.route('/<string:btag>/competetive/pc/us/', methods = ['GET'])
+# def get_pc_competetive_usa(btag):
+# 	resp = scraper.get_qp_hero_data(btag, "competetive", ow_us_pc)
+# 	return jsonify(resp)
 
 
 @app.route('/hello', methods = ['GET'])
@@ -298,3 +309,5 @@ def test():
 if __name__== '__main__':
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
+
+	# get_hero_data("Genji")
