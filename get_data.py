@@ -6,7 +6,7 @@ import scraper
 
 debug = 0
 
-api_endpoint = "https://afternoon-dusk-72724.herokuapp.com/"
+api_endpoint = "https://enhanced-ow-api.herokuapp.com/"
 
 def get_info():
 	valid_sys = ['pc', 'xbl', 'psn']
@@ -52,26 +52,24 @@ def get_info():
 
 	return sys, reg, battle_tag, mode, hero
 
-if debug:
-	url = "https://api.lootbox.eu/pc/us/boludo00-1183/quick-play/hero/Genji/"
-else:
-	sys, reg, battle_tag, mode, hero = get_info()
-	if(sys == "pc"):
-		url = api_endpoint + battle_tag + "/" + mode + "/" + sys + "/" + reg + "/"
+
+def start_prompt(debug=False):
+	if debug:
+		url = "https://api.lootbox.eu/pc/us/boludo00-1183/quick-play/hero/Genji/"
 	else:
-		url = api_endpoint + battle_tag + "/" + mode + "/" + sys + "/"
+		sys, reg, battle_tag, mode, hero = get_info()
+		if(sys == "pc"):
+			url = api_endpoint + battle_tag + "/" + mode + "/" + sys + "/" + reg + "/"
+		else:
+			url = api_endpoint + battle_tag + "/" + mode + "/" + sys + "/"
 
-print "Getting request for " + hero + "..."
-request = requests.get(url=url)
+	print "Getting request at url " + url
+	request = requests.get(url=url)
 
-json_req = request.json()
+	json_req = request.json()
 
-print json.dumps(json_req[hero], indent = 4)
+	returned_hero = {}
+	returned_hero[hero] = json_req[hero]	
 
-# print request.text
+	print json.dumps(returned_hero, indent = 4)
 
-# data = json.loads(request.text)
-
-# df = pd.DataFrame(data)
-
-# print df

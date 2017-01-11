@@ -3,10 +3,7 @@ import urllib
 import json
 import collections
 import re
-
-# ow_us_pc = "https://playoverwatch.com/en-us/career/pc/us/"
-# ow_eu_pc "https://playoverwatch.com/en-us/career/pc/eu/"
-
+import get_data
 
 def get_possible_heros():
 
@@ -87,7 +84,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 		# for thing in dgs:
 		# 	print thing 
 
-		print json.dumps(get_all_heros_json(dgs, qp_hero_list), indent = 4)
+		# print json.dumps(get_all_heros_json(dgs, qp_hero_list), indent = 4)
 		return get_all_heros_json(dgs, qp_hero_list)
 
 	else:
@@ -149,33 +146,18 @@ def get_qp_hero_data(btag, mode, endpoint):
 		for hero in heros:
 			qp_hero_list.append(hero["option-id"])
 
-		print("length of quickplay heros: " + str(len(qp_hero_list)))
-		print("length of data groups containgin quickplay AND comp: " + str(len(data_groups)))
-
+		
 		comp_start_index = len(qp_hero_list)
 		comp_end_index = len(data_groups)
 
 		dgs = data_groups[comp_start_index:comp_end_index]
 
-		index = 0
-		for thing in dgs:
-			print thing 
-			print index
-			index += 1
-
-
-		print json.dumps(get_all_heros_json(dgs, comp_heros), indent = 4)
+		# print json.dumps(get_all_heros_json(dgs, comp_heros), indent = 4)
 		return get_all_heros_json(dgs, comp_heros)
 
 
 
 def get_qp_hero_indices(names):
-
-	print "in quickplay get_hero_indices..."
-	print
-	print names
-	print("with type " + str(type(names)))
-	print
 
 	names = clean_names_up(names)
 	poss_heros = get_possible_heros()
@@ -201,26 +183,20 @@ def clean_names_up(names):
 
 		hero_name = name["option-id"]
 
-		# print "Hero from web scraping: " + hero_name
-
 		torb_match = re.match("Torb", hero_name)
 		lucio_match = re.match("L", hero_name)
 
 		if torb_match:
-			# print "Found a match with " + hero_name 
 			names[i]["option-id"] = "Torbjorn"
-			# replaced_torb = True
 		if lucio_match:
-			# print "Found a match with " + hero_name
 			names[i]["option-id"] = "Lucio"
-			# replaced_lucio = True
 		i += 1
 	return names
 
 
 def get_all_heros_json(hero_data_groups, hero_list):
+	
 	full_resp = collections.OrderedDict()
-
 	i = 0
 	for hero_tag in hero_data_groups:
 		full_resp[hero_list[i]] = make_json_categories_keys(hero_tag)
@@ -230,11 +206,9 @@ def get_all_heros_json(hero_data_groups, hero_list):
 
 
 def make_json_categories_keys(hero_tag):
-	# print("\n\nMaking JSON categories out of: " + str(hero_tag))
+
 	inner = {}
 	cat_response = collections.OrderedDict()
-
-	print("In make_json_categories_keys for:\n" + str(hero_tag))
 
 	for child in hero_tag.descendants:
 		# pharah_test_response["Pharah"] = child
@@ -264,18 +238,6 @@ def make_json_categories_keys(hero_tag):
 	return cat_response
 
 
-
-
-gianny = "boludo00-1183"
-tuck = "xTuckNastyy-1211"
-peter = "PKeks-1544"
-swede_guy = "Zebbosai-2381"
-beast = "Shikari-11156"
-
 if __name__ == "__main__":
-	print "Data for " + gianny
-	get_qp_hero_data(gianny, "quickplay", "https://playoverwatch.com/en-us/career/pc/us/")
-	# get_qp_hero_data(peter, "quickplay", "https://playoverwatch.com/en-us/career/pc/us/")
-
-
+	get_data.start_prompt()
 
