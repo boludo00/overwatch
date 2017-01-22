@@ -29,7 +29,6 @@ def get_comp_hero_data(btag):
 
 def get_qp_hero_data(btag, mode, endpoint):
 
-	# print "mode: " + str(mode)
 	if mode == "quickplay":
 		print "setting qp to true"
 		quickplay = True
