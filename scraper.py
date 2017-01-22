@@ -235,8 +235,3 @@ def make_json_categories_keys(hero_tag):
 						cat_response[child.string] = data_response
 
 	return cat_response
-
-
-if __name__ == "__main__":
-	get_data.start_prompt()
-
