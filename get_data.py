@@ -1,7 +1,6 @@
 import urllib2
 import json
 import requests
-import pandas as pd
 import scraper
 
 debug = 0
@@ -11,7 +10,7 @@ api_endpoint = "https://enhanced-ow-api.herokuapp.com/"
 def get_info():
 	valid_sys = ['pc', 'xbl', 'psn']
 	valid_regs = ['us', 'eu', 'kr', 'cn', 'global']
-	
+
 	valid_heroes = scraper.get_possible_heros()
 
 
@@ -37,7 +36,7 @@ def get_info():
 			print valid_heroes
 	while flag:
 		mode = raw_input("quickplay or competetive? Enter [qp] or [comp]" + "\n")
-			
+
 		if mode == "qp":
 			mode = "quickplay"
 			break
@@ -69,7 +68,6 @@ def start_prompt(debug=False):
 	json_req = request.json()
 
 	returned_hero = {}
-	returned_hero[hero] = json_req[hero]	
+	returned_hero[hero] = json_req[hero]
 
 	print json.dumps(returned_hero, indent = 4)
-
