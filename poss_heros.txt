@@ -22,3 +22,4 @@ D.Va
 Mei
 Sombra
 Ana
+Orisa

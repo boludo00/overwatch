@@ -35,7 +35,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 	elif mode == "competetive":
 		quickplay = False
 
-	# get the html data from the endpoint + whatever battletag 
+	# get the html data from the endpoint + whatever battletag
 	response = urllib.urlopen(endpoint + btag).read()
 	soup = BeautifulSoup(response, "lxml")
 
@@ -45,27 +45,28 @@ def get_qp_hero_data(btag, mode, endpoint):
 	# iterate through the card stats and append each category of stats to a list
 	categories = []
 	for card in card_stats:
-		
+
 		if card.span.string in categories:
-			break;
+			break
 
 		categories.append(card.span.string)
 
 
-	# data groups is a list containing both quickplay and comp stats. 
+	# data groups is a list containing both quickplay and comp stats.
 	# The first half of this list is quickplay data while the last half is comp data.
 	data_groups = soup.findAll("div", {"data-group-id": "stats"})
 
 	# names is a list containing the names of all heroes the user has played for both
-	# quickplay and competetive in the first and last half of the list, 
+	# quickplay and competetive in the first and last half of the list,
 	# plus some extra unwanted data surrounding both halves.
 	names = soup.findAll("option")
+	# print "DEBUG: " +str(names)
 
 	# clean_names_up() replaces Lucio and Torbjorn with utf-8 encoding to handle
 	# the spelling of their names.
 	names = clean_names_up(names)
-	
 
+	# print "DEBUG: " + str(names)
 	if quickplay:
 
 		hero_start_index, hero_end_index = get_qp_hero_indices(names)
@@ -81,7 +82,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 		dgs = data_groups[0:len(qp_hero_list)]
 
 		# for thing in dgs:
-		# 	print thing 
+		# 	print thing
 
 		# print json.dumps(get_all_heros_json(dgs, qp_hero_list), indent = 4)
 		return get_all_heros_json(dgs, qp_hero_list)
@@ -110,14 +111,14 @@ def get_qp_hero_data(btag, mode, endpoint):
 
 				if looped_through_first and missed_because_looped_around:
 					comp_heros.append(name["option-id"])
-					# this is the case where you come across the first appearance of the the second 
+					# this is the case where you come across the first appearance of the the second
 					# set of names (corresponding to competetive), so remember this index
 					if not found_first_index:
 						hero_start_index = i
 
 			else:
 
-				# this is the case where you looped through all hero names in the 
+				# this is the case where you looped through all hero names in the
 				# competetive portion of the list. remember the index of the last hero seen.
 				# can break out of loop now.
 				if(found_first_index):
@@ -136,6 +137,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 
 
 		hero_start_index, hero_end_index = get_qp_hero_indices(names)
+		
 		# use the indeces to subset the names list to contain only heros wanted
 		heros = names[hero_start_index:hero_end_index]
 
@@ -145,7 +147,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 		for hero in heros:
 			qp_hero_list.append(hero["option-id"])
 
-		
+
 		comp_start_index = len(qp_hero_list)
 		comp_end_index = len(data_groups)
 
@@ -172,7 +174,7 @@ def get_qp_hero_indices(names):
 			hero_end_index = i
 			return hero_start_index, hero_end_index
 		i += 1
-			
+
 
 
 def clean_names_up(names):
@@ -194,10 +196,13 @@ def clean_names_up(names):
 
 
 def get_all_heros_json(hero_data_groups, hero_list):
-	
+
 	full_resp = collections.OrderedDict()
 	i = 0
+
 	for hero_tag in hero_data_groups:
+		print i
+		print "Hero tag: ", hero_list[i]
 		full_resp[hero_list[i]] = make_json_categories_keys(hero_tag)
 		i += 1
 	return full_resp
@@ -214,7 +219,7 @@ def make_json_categories_keys(hero_tag):
 		if isinstance(child, NavigableString):
 			continue
 		if child.has_attr("class"):
-			# found the child tag that corresponds to the category of stats 
+			# found the child tag that corresponds to the category of stats
 			# (Assists, Deaths, etc...)
 			if child["class"][0] == "stat-title":
 				inner[child.string] = ""
