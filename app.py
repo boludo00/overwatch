@@ -83,7 +83,7 @@ def get_xbox_data(btag, mode):
         """
         
 	resp = scraper.get_qp_hero_data(btag, mode, ow_xbox)
-	resp.headers.add('Access-Control-Allow-Origin', '*')
+	# resp.headers.add('Access-Control-Allow-Origin', '*')
 	return jsonify(resp)
 
 
@@ -123,7 +123,7 @@ def get_ps4_data(btag, mode):
     """
     
     resp = scraper.get_qp_hero_data(btag, mode, ow_ps4)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    # resp.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(resp)
 
 
@@ -162,7 +162,7 @@ def get_pc_kr_data(btag, mode):
     """
     
     resp = scraper.get_qp_hero_data(btag, mode, ow_kr_pc)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    # resp.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(resp)
 
 
@@ -212,7 +212,7 @@ def get_pc_eu_data(btag, mode):
                 $ref: '#/definitions/PC-EU'
     """
     resp = scraper.get_qp_hero_data(btag, mode, ow_eu_pc)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    # resp.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(resp)
 
 # @app.route('/<string:btag>/quickplay/pc/eu/', methods = ['GET'])
@@ -261,7 +261,7 @@ def get_pc_us_data(btag, mode):
                 $ref: '#/definitions/PC-NA'
     """
     resp = scraper.get_qp_hero_data(btag, mode, ow_us_pc)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    # resp.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(resp)
 
 # @app.route('/<string:btag>/quickplay/pc/us/', methods = ['GET'])

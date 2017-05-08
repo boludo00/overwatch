@@ -201,8 +201,6 @@ def get_all_heros_json(hero_data_groups, hero_list):
 	i = 0
 
 	for hero_tag in hero_data_groups:
-		print i
-		print "Hero tag: ", hero_list[i]
 		full_resp[hero_list[i]] = make_json_categories_keys(hero_tag)
 		i += 1
 	return full_resp
