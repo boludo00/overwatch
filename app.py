@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 from flasgger import Swagger
 import scraper
 import os
@@ -6,6 +7,7 @@ import connexion
 
 
 app = Flask(__name__, static_url_path="")
+CORS(app)
 Swagger(app)
 
 """
