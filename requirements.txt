@@ -1,37 +1,22 @@
-# packages in environment at /Users/Giancarlo/anaconda2/envs/env:
-#
-beautifulsoup4            4.5.1                     <pip>
-bs4                       0.0.1                     <pip>
-click                     6.7                       <pip>
-clickclick                1.2.1                     <pip>
-connexion                 1.0.129                   <pip>
-flasgger                  0.5.14                    <pip>
-Flask                     0.12.1                    <pip>
-Flask-Cors                3.0.2                     <pip>
-functools32               3.2.3.post2               <pip>
-itsdangerous              0.24                      <pip>
-Jinja2                    2.9.6                     <pip>
-jsonschema                2.6.0                     <pip>
-libiconv                  1.14                          0  
-libxml2                   2.9.4                         0  
-libxslt                   1.1.29                        0  
-lxml                      3.7.3                     <pip>
-lxml                      3.7.3                    py27_0  
-MarkupSafe                1.0                       <pip>
-mistune                   0.7.4                     <pip>
-openssl                   1.0.2k                        1  
-pathlib                   1.0.1                     <pip>
-pip                       9.0.1                    py27_1  
-python                    2.7.13                        0  
-PyYAML                    3.12                      <pip>
-readline                  6.2                           2  
-requests                  2.13.0                    <pip>
-setuptools                27.2.0                   py27_0  
-six                       1.10.0                    <pip>
-sqlite                    3.13.0                        0  
-strict-rfc3339            0.7                       <pip>
-swagger-spec-validator    2.1.0                     <pip>
-tk                        8.5.18                        0  
-Werkzeug                  0.12.1                    <pip>
-wheel                     0.29.0                   py27_0  
-zlib                      1.2.8                         3  
+beautifulsoup4==4.5.1
+bs4==0.0.1
+click==6.7
+clickclick==1.2.1
+connexion==1.0.129
+flasgger==0.5.14
+Flask==0.12.1
+Flask-Cors==3.0.2
+functools32==3.2.3.post2
+itsdangerous==0.24
+Jinja2==2.9.6
+jsonschema==2.6.0
+lxml==3.7.3
+MarkupSafe==1.0
+mistune==0.7.4
+pathlib==1.0.1
+PyYAML==3.12
+requests==2.13.0
+six==1.10.0
+strict-rfc3339==0.7
+swagger-spec-validator==2.1.0
+Werkzeug==0.12.1
