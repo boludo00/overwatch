@@ -83,7 +83,7 @@ def get_xbox_data(btag, mode):
         """
         
 	resp = scraper.get_qp_hero_data(btag, mode, ow_xbox)
-  resp.headers.add('Access-Control-Allow-Origin', '*')
+	resp.headers.add('Access-Control-Allow-Origin', '*')
 	return jsonify(resp)
 
 
