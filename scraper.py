@@ -45,9 +45,12 @@ def get_qp_hero_data(btag, mode, endpoint):
 	# iterate through the card stats and append each category of stats to a list
 	categories = []
 	for card in card_stats:
-
-		if card.span.string in categories:
-			break
+		# this is a hotfix, thinking of rewriting all scraping code
+		try:
+			if card.span.string in categories:
+				break
+		except:
+			continue
 
 		categories.append(card.span.string)
 
@@ -88,6 +91,7 @@ def get_qp_hero_data(btag, mode, endpoint):
 		return get_all_heros_json(dgs, qp_hero_list)
 
 	else:
+		print names 
 
 		# # maintain a list of heros that have already been seen.
 		# # push heros onto list as you see them. when you encounter
