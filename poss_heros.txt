@@ -24,3 +24,5 @@ Sombra
 Ana
 Orisa
 Doomfist
+Moira
+Brigitte
